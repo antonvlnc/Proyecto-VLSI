@@ -13,7 +13,11 @@ entity top_sonar is
          o_vga_red    : out std_logic_vector(2 downto 0);
          o_vga_blue   : out std_logic_vector(2 downto 0);
          o_vga_green  : out std_logic_vector(2 downto 0);
-         o_pwm   	  : out std_logic
+         o_pwm   	  : out std_logic;
+			o_disp1      : out STD_LOGIC_VECTOR (6 downto 0);
+			o_disp2      : out STD_LOGIC_VECTOR (6 downto 0);
+			o_sensor_display: out std_logic;
+			i_sens_echo: in std_logic
          );
          
 end top_sonar;
@@ -84,13 +88,13 @@ architecture behavioral of top_sonar is
     end component draw_vga;
 	 
 	 
---	 component sonicos is
--- Port (i_clk: in STD_LOGIC;
---	o_sensor_disp: out STD_LOGIC;
---	i_sensor_eco: in STD_LOGIC;
---	--anodos: out STD_LOGIC_VECTOR (3 downto 0);
---	o_display1,o_display2: out STD_LOGIC_VECTOR (6 downto 0));
--- end component sonicos;
+	 component sonicos is
+ Port (i_clk: in STD_LOGIC;
+	o_sensor_disp: out STD_LOGIC;
+	i_sensor_eco: in STD_LOGIC;
+	--anodos: out STD_LOGIC_VECTOR (3 downto 0);
+	o_display1,o_display2: out STD_LOGIC_VECTOR (6 downto 0));
+ end component sonicos;
 	 
 	 --declaración de señales
      
@@ -116,13 +120,13 @@ begin
    								   o_position => w_pos_servo --salida a otro módulo w_
    								  );
 	
-----controla el sensor ultrasónico 
---   sensor_ctrl : sonicos port map( i_clk    => i_clock,
---   								   o_sensor_disp      => o_sensor_display,
---   								   i_sensor_eco => i_sens_echo,
---										o_display1 => o_disp1,
---										o_display2 =>o_disp2
---   								  );	
+--controla el sensor ultrasónico 
+   sensor_ctrl : sonicos port map( i_clk    => i_clock,
+   								   o_sensor_disp      => o_sensor_display,
+   								   i_sensor_eco => i_sens_echo,
+										o_display1 => o_disp1,
+										o_display2 =>o_disp2
+   								  );	
 									  
 
   --Para el reloj de 25MHz   
@@ -131,7 +135,7 @@ begin
    								  );             									  
     
     --controlador vga
-    vga_controller : vga_ctrl port map(	i_pixel_clk      => w_clk25MHz, 
+    vga_controller : vga_ctrl port map(	i_pixel_clk      => w_clk25Mhz, 
 						    			i_reset_n      => i_clear,
 										--o_clk25      => w_clk25_vgactrl,
 						    			o_h_sync      => o_hsync,
