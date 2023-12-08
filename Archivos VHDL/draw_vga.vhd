@@ -144,41 +144,41 @@ begin
 	
 -------------------------------algoritmo del arco usando tangente------------------------------------------
 			
-		   if( i_servo_pos > 90) then
-					
-			--cuando estemos en la posicion de tangente positivia(anchura 4 pixeles)
-			if( (tan_rom(i_servo_pos - 45))*(i_colactiva - 322) <= 100*(i_filaactiva - 480) and
-			 	(tan_rom(i_servo_pos - 45))*(i_colactiva - 318) >= 100*(i_filaactiva - 480) ) then
-                		  
-				o_vga_red    <= (others => '1');
-	                	o_vga_green  <= (others => '1');
-    	            		o_vga_blue   <= (others => '1');              --lo pintamos blanco
-   	            	
-	                end if;	              
-	                	
-	            elsif(i_servo_pos < 90) then
-	            	
-	            	--cuando estemos en la posicion de tangente negativa
-			if( (tan_rom(i_servo_pos - 45))*(i_colactiva - 318) <= 100*(i_filaactiva - 480) and
-				(tan_rom(i_servo_pos - 45))*(i_colactiva - 322) >= 100*(i_filaactiva - 480) ) then		
-												
-				o_vga_red    <= (others => '1');
-	                	o_vga_green  <= (others => '1');
-    	            		o_vga_blue   <= (others => '1');              --lo pintamos blanco    	
-
-	                end if;	                
-	
-	             else
-	           		--cuando estemos en la posicion 90 
-				if((i_colactiva >= 318) and (i_colactiva <= 322)) then
-					o_vga_red    <= (others => '1');
-	                		o_vga_green  <= (others => '1');
-    	            			o_vga_blue   <= (others => '1');              --lo pintamos blanco
-    	               
-	               		end if;								           		
-	             	
-		  	end if;
-				
+--		   if( i_servo_pos > 90) then
+--					
+--			--cuando estemos en la posicion de tangente positivia(anchura 4 pixeles)
+--			if( (tan_rom(i_servo_pos - 45))*(i_colactiva - 322) <= 100*(i_filaactiva - 480) and
+--			 	(tan_rom(i_servo_pos - 45))*(i_colactiva - 318) >= 100*(i_filaactiva - 480) ) then
+--                		  
+--				o_vga_red    <= (others => '1');
+--	                	o_vga_green  <= (others => '1');
+--    	            		o_vga_blue   <= (others => '1');              --lo pintamos blanco
+--   	            	
+--	                end if;	              
+--	                	
+--	            elsif(i_servo_pos < 90) then
+--	            	
+--	            	--cuando estemos en la posicion de tangente negativa
+--			if( (tan_rom(i_servo_pos - 45))*(i_colactiva - 318) <= 100*(i_filaactiva - 480) and
+--				(tan_rom(i_servo_pos - 45))*(i_colactiva - 322) >= 100*(i_filaactiva - 480) ) then		
+--												
+--				o_vga_red    <= (others => '1');
+--	                	o_vga_green  <= (others => '1');
+--    	            		o_vga_blue   <= (others => '1');              --lo pintamos blanco    	
+--
+--	                end if;	                
+--	
+--	             else
+--	           		--cuando estemos en la posicion 90 
+--				if((i_colactiva >= 318) and (i_colactiva <= 322)) then
+--					o_vga_red    <= (others => '1');
+--	                		o_vga_green  <= (others => '1');
+--    	            			o_vga_blue   <= (others => '1');              --lo pintamos blanco
+--    	               
+--	               		end if;								           		
+--	             	
+--		  	end if;
+----------------------------------------------------------------------------------------------------------------------------			
 	  else--Not disp enable
 		  	
                 o_vga_red    <= (others => '0');
